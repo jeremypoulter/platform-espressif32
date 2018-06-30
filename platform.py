@@ -46,7 +46,8 @@ class Espressif32Platform(PlatformBase):
 
         available_tools = (
             "ft2232h", "minimodule",
-            "olimex-arm-usb-ocd-h", "olimex-arm-usb-tiny-h"
+            "olimex-arm-usb-ocd-h", "olimex-arm-usb-tiny-h",
+            "jlink"
         )
 
         # Only FTDI based debug probes
@@ -55,13 +56,13 @@ class Espressif32Platform(PlatformBase):
                 continue
 
             openocd_board = debug.get("openocd_board")
-            openocd_interface = "mbftdi" if link == "minimodule" else link
+            openocd_interface = "ftdi/mbftdi" if link == "minimodule" else link
             if board.id == "esp-wrover-kit":
-                openocd_interface = "esp32_devkitj_v1"
+                openocd_interface = "ftdi/esp32_devkitj_v1"
 
             server_args = [
                 "-s", "$PACKAGE_DIR/share/openocd/scripts",
-                "-f", "share/openocd/scripts/interface/ftdi/%s.cfg" % openocd_interface,
+                "-f", "share/openocd/scripts/interface/%s.cfg" % openocd_interface,
                 "-f", "share/openocd/scripts/board/%s" % openocd_board
             ]
 

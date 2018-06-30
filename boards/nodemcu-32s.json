@@ -16,7 +16,8 @@
     "can"
   ],
   "debug": {
-    "openocd_board": "esp-wroom-32.cfg"
+    "openocd_board": "esp-wroom-32.cfg",
+    "default_tools": ["jlink"]
   },
   "frameworks":  [
     "arduino",
@@ -34,7 +35,8 @@
       "esptool",
       "olimex-arm-usb-tiny-h",
       "olimex-arm-usb-ocd-h",
-      "minimodule"
+      "minimodule",
+      "jlink"
     ]
   },
   "url": "http://www.nodemcu.com/",
